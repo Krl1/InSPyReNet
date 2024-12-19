@@ -24,9 +24,9 @@ torch.backends.cudnn.allow_tf32 = False
 def _args():
     parser = argparse.ArgumentParser()
     parser.add_argument('--config', '-c',     type=str,            default='configs/InSPyReNet_SwinB.yaml')
-    parser.add_argument('--source', '-s',     type=str)
-    parser.add_argument('--dest', '-d',       type=str,            default=None)
-    parser.add_argument('--type', '-t',       type=str,            default='map')
+    parser.add_argument('--source', '-s',     type=str,            default='images/')
+    parser.add_argument('--dest', '-d',       type=str,            default='outputs/')
+    parser.add_argument('--type', '-t',       type=str,            default='rgba')
     parser.add_argument('--gpu', '-g',        action='store_true', default=False)
     parser.add_argument('--jit', '-j',        action='store_true', default=False)
     parser.add_argument('--verbose', '-v',    action='store_true', default=False)
@@ -155,7 +155,7 @@ def inference(opt, args):
         img = img.astype(np.uint8)
         
         if _format == 'Image':
-            Image.fromarray(img).save(os.path.join(save_dir, sample['name'] + '.png'))
+            Image.fromarray(img).save(os.path.join(save_dir, os.path.basename(sample['name']) + '.png'))
         elif _format == 'Video' and writer is not None:
             writer.write(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
         elif _format == 'Webcam':
