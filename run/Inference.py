@@ -44,6 +44,9 @@ def get_format(source):
         return 'Video'
     else:
         return ''
+    
+def infer(model, sample):
+    return model(sample)
 
 def inference(opt, args):
     model = eval(opt.Model.name)(**opt.Model)
@@ -110,9 +113,9 @@ def inference(opt, args):
 
         with torch.no_grad():
             if args.jit is True:
-                out = model(sample['image'])
+                out = infer(model, sample['image'])
             else:
-                out = model(sample)
+                out = infer(model, sample)
                 
                     
         pred = to_numpy(out['pred'], sample['shape'])
