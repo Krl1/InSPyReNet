@@ -23,7 +23,7 @@ torch.backends.cudnn.allow_tf32 = False
 
 def _args():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--config', '-c',     type=str,            default='configs/InSPyReNet_SwinB.yaml')
+    parser.add_argument('--config', '-c',     type=str,            default='configs/Plus_Ultra.yaml')
     parser.add_argument('--source', '-s',     type=str,            default='images/')
     parser.add_argument('--dest', '-d',       type=str,            default='outputs/')
     parser.add_argument('--type', '-t',       type=str,            default='rgba')

@@ -139,3 +139,4 @@ temp/*
 .vscode
 
 outputs/
+profiling_results/
